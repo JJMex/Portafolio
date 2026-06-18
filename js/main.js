@@ -92,7 +92,19 @@ document.addEventListener("DOMContentLoaded", function() {
         let packetsArray = [];
         let mouse = { x: null, y: null };
         
+        // [NUEVO] Detección global de dispositivo táctil
+        let isTouchDevice = false;
+        window.addEventListener('touchstart', () => {
+            isTouchDevice = true;
+            // Limpiamos el mouse inmediatamente si se toca la pantalla
+            mouse.x = null;
+            mouse.y = null;
+        }, { passive: true, once: true });
+
         header.addEventListener('mousemove', (event) => {
+            // [NUEVO] Si es un celular, ignoramos el "mouse fantasma" al hacer scroll
+            if (isTouchDevice) return; 
+            
             let rect = header.getBoundingClientRect();
             mouse.x = event.clientX - rect.left;
             mouse.y = event.clientY - rect.top;
@@ -102,14 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
             mouse.x = null;
             mouse.y = null;
         });
-
-        // [NUEVO] Neutralizar el comportamiento errático en pantallas táctiles
-        window.addEventListener('touchmove', () => {
-            if (typeof mouse !== 'undefined') {
-                mouse.x = null;
-                mouse.y = null;
-            }
-        }, { passive: true });
         
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
@@ -158,7 +162,10 @@ document.addEventListener("DOMContentLoaded", function() {
         
         function initNodes() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 6000;
+            // [NUEVO] Optimizador de CPU: Reduce drásticamente la densidad de nodos en pantallas móviles
+            let divisorDensidad = window.innerWidth < 768 ? 16000 : 6000;
+            let numberOfParticles = (canvas.height * canvas.width) / divisorDensidad;
+            
             for(let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 1.5) + 1;
                 let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
@@ -211,6 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
                 
+                // Solo dibuja la conexión con el mouse si este existe (en desktop)
                 if(mouse.x != null && mouse.y != null) {
                     let distanceMouse = ((particlesArray[a].x - mouse.x) * (particlesArray[a].x - mouse.x)) + 
                                         ((particlesArray[a].y - mouse.y) * (particlesArray[a].y - mouse.y));
@@ -226,11 +234,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-        // [NUEVO] Control de redimensionamiento optimizado
+        // Control de redimensionamiento optimizado
         let currentScreenWidth = window.innerWidth;
         
         window.addEventListener('resize', () => {
-            // Solo reiniciamos la animación si la pantalla cambia de ancho (rotación)
             if (window.innerWidth !== currentScreenWidth) {
                 canvas.width = header.offsetWidth;
                 canvas.height = header.offsetHeight;
