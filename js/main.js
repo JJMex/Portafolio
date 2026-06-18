@@ -14,13 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // =========================================
     // INYECCIÓN DINÁMICA DE CONTACTOS (PRINCIPIO DRY)
     // =========================================
-    // Inyectar texto del correo
     document.querySelectorAll('.email-text').forEach(el => el.innerText = CONTACT_DATA.email);
-    
-    // Inyectar enlace de LinkedIn
     document.querySelectorAll('.linkedin-link').forEach(el => el.href = CONTACT_DATA.linkedin);
     
-    // Inyectar enlaces de WhatsApp (Codificados para URLs de forma segura)
     const encodedMsgEN = encodeURIComponent(CONTACT_DATA.msgEN);
     const encodedMsgES = encodeURIComponent(CONTACT_DATA.msgES);
     document.querySelectorAll('.whatsapp-link-en').forEach(el => el.href = `https://wa.me/${CONTACT_DATA.whatsappPhone}?text=${encodedMsgEN}`);
@@ -106,6 +102,14 @@ document.addEventListener("DOMContentLoaded", function() {
             mouse.x = null;
             mouse.y = null;
         });
+
+        // [NUEVO] Neutralizar el comportamiento errático en pantallas táctiles
+        window.addEventListener('touchmove', () => {
+            if (typeof mouse !== 'undefined') {
+                mouse.x = null;
+                mouse.y = null;
+            }
+        }, { passive: true });
         
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
@@ -222,10 +226,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
+        // [NUEVO] Control de redimensionamiento optimizado
+        let currentScreenWidth = window.innerWidth;
+        
         window.addEventListener('resize', () => {
-            canvas.width = header.offsetWidth;
-            canvas.height = header.offsetHeight;
-            initNodes();
+            // Solo reiniciamos la animación si la pantalla cambia de ancho (rotación)
+            if (window.innerWidth !== currentScreenWidth) {
+                canvas.width = header.offsetWidth;
+                canvas.height = header.offsetHeight;
+                currentScreenWidth = window.innerWidth;
+                initNodes();
+            }
         });
         
         initNodes();
