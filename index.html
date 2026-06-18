@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Cruz | Telecom & Infrastructure Senior Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='15' y='15' width='70' height='18' rx='3' fill='none' stroke='%2300f0ff' stroke-width='6'/><circle cx='30' cy='24' r='4' fill='%2300f0ff'/><rect x='15' y='41' width='70' height='18' rx='3' fill='none' stroke='%2300f0ff' stroke-width='6'/><circle cx='30' cy='50' r='4' fill='%2300f0ff'/><rect x='15' y='67' width='70' height='18' rx='3' fill='none' stroke='%2300f0ff' stroke-width='6'/><circle cx='30' cy='76' r='4' fill='%2300f0ff'/></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body data-lang="en">
+    
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <button id="langToggle" class="lang-btn">
+        <i class="fas fa-globe"></i> <span id="langText">ES</span>
+    </button>
+
+    <header class="hero">
+        <canvas id="networkCanvas"></canvas>
+
+        <div class="hero-content">
+            <div class="hero-avatar-col">
+                <img src="img/profile.jpeg" alt="José Juan Cruz Bahena" class="profile-avatar">
+            </div>
+            
+            <div class="hero-text-col">
+                <h1 class="glitch-text">José Juan Cruz Bahena</h1>
+                <h2 class="en">Senior Network & Infrastructure Engineer</h2>
+                <h2 class="es">Ingeniero Senior de Redes e Infraestructura</h2>
+                
+                <p class="en">Specialized in high availability, NOC management, and network automation. 7+ years of experience deploying carrier-grade infrastructure. Bilingual (English B2/C1).</p>
+                <p class="es">Especializado en alta disponibilidad, gestión de NOC y automatización de redes. Más de 7 años de experiencia desplegando infraestructura a nivel operador. Bilingüe (Inglés B2/C1).</p>
+                
+                <div class="contact-info">
+                    <a class="copy-email-trigger" style="cursor: pointer;" title="Copy to clipboard"><i class="fas fa-envelope"></i> <span class="email-text"></span></a>
+                    <a target="_blank" class="en whatsapp-link-en"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a target="_blank" class="es whatsapp-link-es"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a target="_blank" class="linkedin-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    
+                    <span class="en"><i class="fas fa-globe"></i> Mexico City (Targeting 100% Remote)</span>
+                    <span class="es"><i class="fas fa-globe"></i> CDMX, México (Buscando 100% Remoto)</span>
+                </div>
+
+            <div>
+                <a href="cv/Jose_Cruz_CV_EN.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn en"><i class="fas fa-file-pdf"></i> Download Resume</a>
+                <a href="cv/Jose_Cruz_CV_ES.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn es"><i class="fas fa-file-pdf"></i> Descargar CV</a>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="skills hidden">
+        <h3 class="section-title en">Core Technical Skills</h3>
+        <h3 class="section-title es">Habilidades Técnicas Core</h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h4 class="en">Infrastructure</h4>
+                <h4 class="es">Infraestructura</h4>
+                <div class="skill-tags">
+                    <span>Proxmox</span>
+                    <span>Datacenters</span>
+                    <span>Server Deployment</span>
+                    <span>Linux</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-network-wired"></i>
+                <h4 class="en">Networking & Security</h4>
+                <h4 class="es">Redes y Seguridad</h4>
+                <div class="skill-tags">
+                    <span>Routing & Switching</span>
+                    <span>IPsec VPNs</span>
+                    <span>VoIP</span>
+                    <span>Enterprise Wireless</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-terminal"></i>
+                <h4 class="en">Monitoring & Automation</h4>
+                <h4 class="es">Monitoreo y Automatización</h4>
+                <div class="skill-tags">
+                    <span>Zabbix & Grafana</span>
+                    <span>Prometheus & InfluxDB</span>
+                    <span>API Automation</span>
+                    <span>Python/Bash Scripts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience hidden">
+        <h3 class="section-title en">Professional Experience</h3>
+        <h3 class="section-title es">Experiencia Profesional</h3>
+        
+        <div class="job">
+            <div class="job-header">
+                <h4 class="en">Senior Network Operations Engineer / NOC Lead</h4>
+                <h4 class="es">Ingeniero Senior de Operaciones de Red / Líder de NOC</h4>
+                <span class="date en">April 2025 – Present | DIM</span>
+                <span class="date es">Abril 2025 – Presente | DIM</span>
+            </div>
+            <ul class="en">
+                <li>Designed and implemented a new corporate NOC with Proxmox architecture.</li>
+                <li>Developed automation scripts reducing MTTD to 20 seconds via API integrations.</li>
+                <li>Managed national IPsec VPN connectivity across 30 Datacenters ensuring high availability.</li>
+                <li>Established the Help Desk structure, defining SOPs and SLAs for corporate clients.</li>
+            </ul>
+            <ul class="es">
+                <li>Diseño e implementación de un nuevo NOC corporativo con arquitectura Proxmox.</li>
+                <li>Desarrollo de scripts de automatización reduciendo el MTTD a 20 segundos mediante APIs.</li>
+                <li>Gestión de conectividad nacional para 30 Datacenters mediante VPN IPsec.</li>
+                <li>Establecimiento de la estructura de Help Desk desde cero, definiendo SOPs y SLAs.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h4 class="en">Senior Network Engineer</h4>
+                <h4 class="es">Ingeniero Senior de Redes</h4>
+                <span class="date en">June 2022 – April 2025 | xServices</span>
+                <span class="date es">Junio 2022 – Abril 2025 | xServices</span>
+            </div>
+            <ul class="en">
+                <li>Lead Engineer for "Universidad de la Libertad" campus network infrastructure (R&S and massive Wi-Fi).</li>
+                <li>Executed advanced diagnostics and Site Surveys using Ekahau and WLAN Planner.</li>
+                <li>Designed highly efficient wired and wireless topologies based on spectrum analysis.</li>
+            </ul>
+            <ul class="es">
+                <li>Ingeniero Líder para infraestructura de red de campus "Universidad de la Libertad" (R&S y Wi-Fi masivo).</li>
+                <li>Ejecución de diagnósticos avanzados y Site Surveys con Ekahau y WLAN Planner.</li>
+                <li>Diseño de topologías alámbricas e inalámbricas basadas en análisis de espectro.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h4 class="en">CCNA Implementation Engineer</h4>
+                <h4 class="es">Ingeniero de Implementación CCNA</h4>
+                <span class="date en">February 2021 – June 2022 | Integra Technologies</span>
+                <span class="date es">Febrero 2021 – Junio 2022 | Integra Technologies</span>
+            </div>
+            <ul class="en">
+                <li>Deployed large-scale network infrastructure for CDMX Government public Wi-Fi using Huawei enterprise equipment.</li>
+                <li>Led L1-L3 advanced troubleshooting to guarantee massive public Internet access.</li>
+                <li>Standardized installation processes, significantly reducing failure reports.</li>
+            </ul>
+            <ul class="es">
+                <li>Implementación de infraestructura a gran escala para Wi-Fi público del Gobierno de la CDMX (equipos Huawei).</li>
+                <li>Liderazgo en troubleshooting L1-L3 garantizando el acceso público masivo a Internet.</li>
+                <li>Estandarización de procesos de instalación, reduciendo reportes de fallas técnicas.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h4 class="en">Junior Network Engineer</h4>
+                <h4 class="es">Ingeniero de Redes Junior</h4>
+                <span class="date en">June 2018 – February 2021 | DIM</span>
+                <span class="date es">Junio 2018 – Febrero 2021 | DIM</span>
+            </div>
+            <ul class="en">
+                <li>Provided Tier 2 technical support for Huawei Data Center environments.</li>
+                <li>Resolved complex network configuration issues and supported Routing & Switching projects.</li>
+                <li>Implemented VoIP telephony servers, Wireless networks, and smart surveillance cameras.</li>
+            </ul>
+            <ul class="es">
+                <li>Soporte técnico Nivel 2 para entornos de Data Center Huawei, resolviendo problemas críticos.</li>
+                <li>Resolución de problemas complejos de configuración y apoyo en proyectos de Routing & Switching.</li>
+                <li>Implementación de servidores de telefonía VoIP, redes Wireless y cámaras de videovigilancia.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="certifications hidden">
+        <h3 class="section-title en">Certifications & Education</h3>
+        <h3 class="section-title es">Certificaciones y Educación</h3>
+        <div class="cert-list">
+            <span class="en"><i class="fas fa-university"></i> Telecom Engineering (UNAM)</span>
+            <span class="es"><i class="fas fa-university"></i> Ingeniería en Telecomunicaciones (UNAM)</span>
+            <span><i class="fas fa-award"></i> CCNA (Cisco)</span>
+            <span><i class="fas fa-award"></i> HCIA Datacom (Huawei)</span>
+            <span><i class="fas fa-award"></i> FCIA-Server</span>
+            <span class="en"><i class="fas fa-shield-alt"></i> Cyber Security Cert</span>
+            <span class="es"><i class="fas fa-shield-alt"></i> Cert. en Ciberseguridad</span>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-card">
+            <p class="en" style="margin-bottom: 15px; font-size: 1.3rem; color: var(--accent); font-family: 'Share Tech Mono', monospace;">Ready to work together?</p>
+            <p class="es" style="margin-bottom: 15px; font-size: 1.3rem; color: var(--accent); font-family: 'Share Tech Mono', monospace;">¿Listo para trabajar juntos?</p>
+            
+            <div class="contact-info">
+                <a class="copy-email-trigger" style="cursor: pointer;" title="Copy to clipboard"><i class="fas fa-envelope"></i> <span class="email-text"></span></a>
+                <a target="_blank" class="en whatsapp-link-en"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a target="_blank" class="es whatsapp-link-es"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a target="_blank" class="linkedin-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+
+            <div>
+                <a href="cv/Jose_Cruz_CV_EN.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn en"><i class="fas fa-file-pdf"></i> Download Resume</a>
+                <a href="cv/Jose_Cruz_CV_ES.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn es"><i class="fas fa-file-pdf"></i> Descargar CV</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i> 
+        <span class="en">Email copied to clipboard!</span>
+        <span class="es">¡Correo copiado al portapapeles!</span>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

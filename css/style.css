@@ -1,0 +1,556 @@
+/* =========================================
+   1. VARIABLES Y RESET GENERAL
+   ========================================= */
+:root {
+    --bg-color: #030303;
+    --card-bg: #0a0a0a;
+    --text-main: #e0e0e0;
+    --text-muted: #8b949e;
+    --accent: #00f0ff;
+    --accent-hover: #00b3cc;
+    --border-color: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. UTILIDADES Y ANIMACIONES BASE
+   ========================================= */
+body[data-lang="en"] .es { display: none !important; }
+body[data-lang="es"] .en { display: none !important; }
+
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   3. ORBES FLOTANTES (Elegantes y Corporativos)
+   ========================================= */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px); 
+    -webkit-filter: blur(120px);
+    z-index: -1; 
+    opacity: 0.25; 
+    animation: float 25s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: #0055ff; 
+    top: -150px;
+    left: -150px;
+    animation-duration: 30s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: #0022bb; 
+    bottom: 0;
+    right: -100px;
+    animation-duration: 35s;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 150px) scale(1.1); }
+}
+
+/* =========================================
+   4. CABECERA (HERO) Y DISEÑO DE TARJETA EJECUTIVA
+   ========================================= */
+.hero {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 4rem 2rem;
+    background: transparent; 
+    position: relative;
+    z-index: 3; 
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1;
+    z-index: -1; 
+}
+
+#networkCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; 
+}
+
+/* TARJETA PRINCIPAL (Flexbox de 2 Columnas en Escritorio) */
+.hero-content {
+    position: relative;
+    z-index: 10; 
+    background-color: rgba(10, 10, 10, 0.08); 
+    backdrop-filter: blur(3px); 
+    -webkit-backdrop-filter: blur(3px);
+    padding: 3.5rem 4rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    max-width: 1050px; /* Ampliado para dar excelente holgura a las dos columnas */
+    margin: 0 auto;
+    pointer-events: auto;
+    transition: all 0.4s ease; 
+    
+    display: flex;
+    align-items: center;
+    text-align: left; /* Alineación ejecutiva a la izquierda */
+    gap: 4rem; /* Distancia entre la columna de la foto y la del texto */
+}
+
+.hero-content:hover {
+    background-color: rgba(10, 10, 10, 0.01); 
+    backdrop-filter: blur(1px); 
+    -webkit-backdrop-filter: blur(1px);
+    border: 1px solid rgba(0, 240, 255, 0.4); 
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); 
+}
+
+/* Manejo de columnas internas */
+.hero-avatar-col {
+    flex-shrink: 0; /* Evita que la foto se intente comprimir */
+}
+
+.hero-text-col {
+    flex-grow: 1;
+}
+
+/* Foto de perfil */
+.profile-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+    transition: all 0.4s ease;
+    display: block;
+}
+
+.hero-content:hover .profile-avatar {
+    transform: scale(1.03);
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+.glitch-text {
+    font-size: 3.5rem;
+    color: #ffffff;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    margin-bottom: 12px;
+}
+
+.hero h2 {
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.hero-content h2, .hero-content p, .hero-content span {
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9); 
+}
+
+/* Distribución de la barra de Contactos */
+.contact-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem; 
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* Header alinear a la izquierda, Footer alinear al centro */
+.hero-content .contact-info { justify-content: flex-start; }
+.footer-card .contact-info { justify-content: center; }
+
+.contact-info span, .contact-info a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #ffffff;
+    text-decoration: none; 
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--accent); 
+    transform: translateY(-1px);
+}
+
+.contact-info i { color: var(--accent); margin-right: 8px; }
+
+.cv-btn {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 8px 22px;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid var(--accent);
+    color: var(--accent) !important;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.cv-btn:hover {
+    background: var(--accent);
+    color: var(--bg-color) !important;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+/* =========================================
+   5. SECCIONES GENERALES Y DIVISORES
+   ========================================= */
+section {
+    padding: 4.5rem 10%; 
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    background: transparent; 
+    z-index: 3; 
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw; 
+    height: 100%;
+    background: 
+        linear-gradient(180deg, rgba(0, 240, 255, 0.03) 0%, transparent 20%), 
+        linear-gradient(90deg, transparent, var(--accent), transparent) top / 100% 1px no-repeat; 
+    z-index: -1; 
+}
+
+/* =========================================
+   6. TARJETAS DE CONTENIDO (Glassmorphism)
+   ========================================= */
+.skill-card, .job, .cert-list span {
+    background-color: rgba(10, 10, 10, 0.4); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(0, 240, 255, 0.15); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem;
+}
+
+.skill-card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skill-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+}
+
+.skill-card:hover::after { transform: scaleX(1); }
+
+.skill-card i {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.skill-card h4 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.skill-tags span {
+    background: rgba(0, 240, 255, 0.05);
+    color: var(--text-main);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    transition: all 0.3s;
+}
+
+.skill-card:hover .skill-tags span {
+    border-color: rgba(0, 240, 255, 0.6);
+    color: #ffffff;
+}
+
+.job {
+    padding: 2.5rem;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 2.5rem;
+}
+
+.job:hover {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    background-color: rgba(20, 20, 20, 0.6);
+}
+
+.job-header {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-bottom: 1.5rem;
+    gap: 8px; 
+}
+
+.job-header h4 { font-size: 1.4rem; color: #ffffff; }
+.job-header .date { color: var(--accent); font-family: 'Share Tech Mono', monospace; font-size: 1rem; }
+
+.job ul { list-style-type: none; }
+.job ul li { margin-bottom: 12px; position: relative; padding-left: 20px; }
+.job ul li::before { content: '>'; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
+
+.cert-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cert-list span {
+    padding: 12px 25px;
+    border-radius: 4px;
+    color: var(--text-main);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.cert-list span:hover {
+    background-color: var(--accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+/* =========================================
+   7. FOOTER, BOTONES Y UI (Toast/Lang)
+   ========================================= */
+.site-footer {
+    text-align: center;
+    padding: 4.5rem 2rem 6rem 2rem;
+    background-color: transparent; 
+    position: relative;
+    z-index: 3;
+}
+
+.footer-card {
+    background-color: rgba(10, 10, 10, 0.4); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid rgba(0, 240, 255, 0.15); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); 
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+}
+
+.footer-card:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.1);
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.lang-btn {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    z-index: 1000;
+    transition: all 0.3s;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+}
+
+.lang-btn:hover {
+    background: var(--accent);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px); 
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent);
+    color: var(--text-main);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.toast.show-toast { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast i { color: var(--accent); margin-right: 10px; }
+
+/* =========================================
+   8. MEDIA QUERIES (Responsividad Avanzada)
+   ========================================= */
+@media (max-width: 1024px) {
+    .hero { min-height: 50vh; padding-top: 6rem; }
+    .hero-content { gap: 2.5rem; padding: 3rem; }
+    .glitch-text { font-size: 3rem; }
+    section { padding: 4rem 5%; }
+}
+
+@media (max-width: 768px) {
+    /* Forzar reacomodo a UNA SOLA COLUMNA centrada en móviles */
+    .hero { padding-top: 5rem; padding-bottom: 2rem; }
+    
+    .hero-content { 
+        flex-direction: column; /* Cambia a disposición vertical */
+        text-align: center; 
+        padding: 2.5rem 1.5rem; 
+        gap: 1.5rem; 
+    }
+    
+    .hero-content .contact-info { 
+        justify-content: center; 
+    }
+    
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .glitch-text { font-size: 2.2rem; }
+    .hero h2 { font-size: 1.2rem; }
+    .hero p { font-size: 1rem; }
+    
+    .contact-info span { display: block; margin: 12px 0; }
+    .section-title { font-size: 1.6rem; margin-bottom: 1.5rem; }
+    
+    .job-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .job-header h4 { font-size: 1.2rem; }
+    
+    .skills-grid { grid-template-columns: 1fr; }
+    .footer-card { padding: 2rem 1.5rem; }
+    
+    .lang-btn { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.9rem; }
+    section { padding: 3rem 5%; }
+}
